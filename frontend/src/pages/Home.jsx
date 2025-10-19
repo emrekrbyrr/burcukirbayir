@@ -43,10 +43,7 @@ const Home = () => {
   };
 
   const handleBlogClick = (postId) => {
-    toast({
-      title: "Yakında!",
-      description: "Blog yazıları yakında eklenecek.",
-    });
+    navigate(`/blog/${postId}`);
   };
 
   return (
