@@ -1,16 +1,19 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Mail, MapPin, BookOpen, Users, Award, Star, Calendar, ChevronRight } from 'lucide-react';
 import { Button } from '../components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../components/ui/card';
 import { toast } from '../hooks/use-toast';
+import axios from 'axios';
 import {
   teacherInfo,
   experiences,
   teachingApproaches,
-  blogPosts,
   testimonials,
   privateLessons
 } from '../mock';
+
+const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
+const API = `${BACKEND_URL}/api`;
 
 const getApproachIcon = (iconName) => {
   const iconMap = {
@@ -24,6 +27,21 @@ const getApproachIcon = (iconName) => {
 };
 
 const Home = () => {
+  const [blogPosts, setBlogPosts] = useState([]);
+
+  useEffect(() => {
+    fetchBlogPosts();
+  }, []);
+
+  const fetchBlogPosts = async () => {
+    try {
+      const response = await axios.get(`${API}/blog`);
+      setBlogPosts(response.data);
+    } catch (error) {
+      console.error('Error fetching blog posts:', error);
+    }
+  };
+
   const handleBlogClick = (postId) => {
     toast({
       title: "Yakında!",
