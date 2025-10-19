@@ -51,6 +51,13 @@ const Home = () => {
     setFormData({ name: '', email: '', phone: '', message: '' });
   };
 
+  const handleBlogClick = (postId) => {
+    toast({
+      title: "Yakında!",
+      description: "Blog yazıları yakında eklenecek.",
+    });
+  };
+
   return (
     <div className="min-h-screen bg-[#FAF8F3]">
       {/* Navigation */}
@@ -126,8 +133,8 @@ const Home = () => {
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <div className="relative">
               <img
-                src="https://images.unsplash.com/photo-1577896851231-70ef18881754"
-                alt="Sınıf ortamı"
+                src="https://customer-assets.emergentagent.com/job_teacher-burcu/artifacts/w1y13yed_burcuprofil.jpeg"
+                alt="Burcu Kırbayır"
                 className="rounded-2xl shadow-xl w-full h-auto object-cover"
               />
             </div>
@@ -253,7 +260,10 @@ const Home = () => {
                 </CardHeader>
                 <CardContent>
                   <p className="text-[#6B5545] leading-relaxed">{post.excerpt}</p>
-                  <button className="mt-4 text-[#8B6F47] font-medium hover:gap-3 flex items-center gap-2 transition-all">
+                  <button 
+                    onClick={() => handleBlogClick(post.id)}
+                    className="mt-4 text-[#8B6F47] font-medium hover:gap-3 flex items-center gap-2 transition-all"
+                  >
                     Devamını Oku
                     <ChevronRight className="w-4 h-4" />
                   </button>
@@ -391,8 +401,8 @@ const Home = () => {
               </Card>
               <div className="relative rounded-2xl overflow-hidden h-64">
                 <img
-                  src="https://images.unsplash.com/photo-1580894732444-8ecded7900cd"
-                  alt="İletişim"
+                  src="https://customer-assets.emergentagent.com/job_teacher-burcu/artifacts/w1y13yed_burcuprofil.jpeg"
+                  alt="Burcu Kırbayır"
                   className="w-full h-full object-cover"
                 />
               </div>
