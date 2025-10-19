@@ -5,9 +5,8 @@ export const teacherInfo = {
   title: "Sınıf Öğretmeni",
   bio: "Çocukların öğrenme yolculuğunda rehber ve ilham kaynağı olmayı seven, modern öğretim yöntemleriyle eğitimi dönüştüren bir sınıf öğretmeniyim. Eğlenerek öğrenmenin gücüne inanıyor, her çocuğun potansiyelini ortaya çıkarmak için teknoloji ve yaratıcılığı bir araya getiriyorum.",
   education: "Marmara Üniversitesi - Sınıf Öğretmenliği (2021)",
-  phone: "0532 379 4636",
   email: "burcukirbayir@gmail.com",
-  profileImage: "https://customer-assets.emergentagent.com/job_2adab90d-569f-4ced-93fc-1dc3629ce97b/artifacts/52o0mrg4_ogretmen.png"
+  profileImage: "https://customer-assets.emergentagent.com/job_teacher-burcu/artifacts/gynxrrxx_profilarkaplanburcu.png"
 };
 
 export const experiences = [
@@ -17,7 +16,7 @@ export const experiences = [
     school: "Nesibe Aydın Okulları",
     location: "Kocaeli",
     position: "Sınıf Öğretmeni",
-    description: "PYP programı ile öğrenci merkezli eğitim yaklaşımını uyguluyorum. Drama etkinlikleri ve yapay zeka destekli öğrenme deneyimleri tasarlıyorum."
+    description: "Şu anda görev yaptığım Nesibe Aydın Okulları'nda, uluslararası standartlarda PYP (Primary Years Programme) müfredatını uygulayarak öğrencilerimin hem akademik hem de sosyal-duygusal gelişimlerine katkı sağlıyorum. Drama etkinlikleri ile çocukların kendilerini özgürce ifade etmelerini desteklerken, yapay zeka araçları ve Web 2.0 teknolojilerini derslerime entegre ederek 21. yüzyıl becerilerini kazandırıyorum. Öğrenci merkezli yaklaşımımla, her çocuğun bireysel öğrenme stiline uygun materyaller geliştiriyor ve sınıfımda demokratik bir öğrenme ortamı oluşturuyorum."
   },
   {
     id: 2,
@@ -25,7 +24,7 @@ export const experiences = [
     school: "Yeşilyurt Açı Koleji",
     location: "İstanbul",
     position: "Sınıf Öğretmeni",
-    description: "İnteraktif öğretim yöntemleri ve oyunlaştırılmış eğitim programları geliştirdim."
+    description: "Yeşilyurt Açı Koleji'nde görev yaptığım dönemde, oyunlaştırılmış öğrenme yöntemleri ile öğrencilerimin derse katılımını ve motivasyonunu artırmaya odaklandım. İnteraktif akıllı tahta uygulamaları, dijital hikaye anlatımı ve çeşitli eğitim teknolojisi araçlarını kullanarak derslerimi zenginleştirdim. Öğrencilerimin problem çözme becerilerini geliştirmek için STEM odaklı projeler tasarladım. Ayrıca sınıf yönetimi konusunda pozitif disiplin yaklaşımını benimseyerek, öğrencilerimle güven temelli ilişkiler kurdum."
   },
   {
     id: 3,
@@ -33,7 +32,7 @@ export const experiences = [
     school: "YÖM İlkokulu",
     location: "İstanbul",
     position: "Sınıf Öğretmeni",
-    description: "Öğretmenlik kariyerime başladığım ilk adım. Sınıf yönetimi ve öğrenci gelişimi konularında temel deneyimlerimi kazandım."
+    description: "Öğretmenlik kariyerime ilk adımımı attığım YÖM İlkokulu'nda, mesleki gelişimimin temellerini attım. Bu dönemde sınıf yönetimi, farklı öğrenme ihtiyaçlarına sahip öğrencilere yaklaşım ve etkili ders planlama konularında değerli deneyimler kazandım. İlk yılımda edindiğim tecrübeler, öğretmenlik mesleğine olan tutkumu daha da artırdı. Velilerle iletişim kurma, öğrenci takip sistemlerini etkin kullanma ve okul-aile işbirliğini güçlendirme konularında pratik bilgi ve beceriler edindim."
   }
 ];
 
@@ -71,7 +70,8 @@ export const blogPosts = [
     excerpt: "Yapay zeka araçlarının sınıf ortamında nasıl etkili kullanılabileceğini ve öğrenci katılımını nasıl artırdığını keşfedin.",
     date: "15 Mart 2024",
     category: "Teknoloji",
-    image: "https://images.pexels.com/photos/4145190/pexels-photo-4145190.jpeg"
+    image: "https://images.pexels.com/photos/4145190/pexels-photo-4145190.jpeg",
+    content: "Blog içeriği yakında eklenecek..."
   },
   {
     id: 2,
@@ -79,7 +79,8 @@ export const blogPosts = [
     excerpt: "Çocukların dil becerilerini geliştirmek için drama etkinliklerinden nasıl yararlanabiliriz? İşte uygulamalı öneriler.",
     date: "8 Mart 2024",
     category: "Drama",
-    image: "https://images.unsplash.com/photo-1605627079912-97c3810a11a4"
+    image: "https://images.unsplash.com/photo-1605627079912-97c3810a11a4",
+    content: "Blog içeriği yakında eklenecek..."
   },
   {
     id: 3,
@@ -87,7 +88,8 @@ export const blogPosts = [
     excerpt: "Öğrencilerin merak duygularını harekete geçiren sorgulama temelli öğrenme yaklaşımının püf noktaları.",
     date: "1 Mart 2024",
     category: "PYP",
-    image: "https://images.unsplash.com/photo-1603354350317-6f7aaa5911c5"
+    image: "https://images.unsplash.com/photo-1603354350317-6f7aaa5911c5",
+    content: "Blog içeriği yakında eklenecek..."
   }
 ];
 

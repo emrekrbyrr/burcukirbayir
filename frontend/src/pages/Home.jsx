@@ -1,9 +1,7 @@
-import React, { useState } from 'react';
-import { Mail, Phone, MapPin, BookOpen, Users, Award, Send, Star, Calendar, ChevronRight } from 'lucide-react';
+import React from 'react';
+import { Mail, MapPin, BookOpen, Users, Award, Star, Calendar, ChevronRight } from 'lucide-react';
 import { Button } from '../components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../components/ui/card';
-import { Input } from '../components/ui/input';
-import { Textarea } from '../components/ui/textarea';
 import { toast } from '../hooks/use-toast';
 import {
   teacherInfo,
@@ -26,31 +24,6 @@ const getApproachIcon = (iconName) => {
 };
 
 const Home = () => {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    message: ''
-  });
-
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: value
-    }));
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Mock submission
-    toast({
-      title: "Mesajınız alındı!",
-      description: "En kısa sürede sizinle iletişime geçeceğim.",
-    });
-    setFormData({ name: '', email: '', phone: '', message: '' });
-  };
-
   const handleBlogClick = (postId) => {
     toast({
       title: "Yakında!",
@@ -133,7 +106,7 @@ const Home = () => {
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <div className="relative">
               <img
-                src="https://customer-assets.emergentagent.com/job_teacher-burcu/artifacts/w1y13yed_burcuprofil.jpeg"
+                src="https://customer-assets.emergentagent.com/job_teacher-burcu/artifacts/gynxrrxx_profilarkaplanburcu.png"
                 alt="Burcu Kırbayır"
                 className="rounded-2xl shadow-xl w-full h-auto object-cover"
               />
@@ -346,7 +319,7 @@ const Home = () => {
                 className="bg-[#8B6F47] hover:bg-[#6B5533] text-white rounded-lg px-6 py-6 text-base"
               >
                 İletişime Geçin
-                <Send className="ml-2 w-4 h-4" />
+                <ChevronRight className="ml-2 w-4 h-4" />
               </Button>
             </div>
             <div className="relative">
@@ -366,112 +339,37 @@ const Home = () => {
           <div className="text-center mb-16">
             <h3 className="text-3xl lg:text-4xl font-bold text-[#3D2E1F] mb-4">İletişim</h3>
             <p className="text-lg text-[#6B5545] max-w-2xl mx-auto">
-              Benimle iletişime geçmek için aşağıdaki formu kullanabilir veya doğrudan ulaşabilirsiniz
+              Benimle iletişime geçmek için e-posta adresimi kullanabilirsiniz
             </p>
           </div>
-          <div className="grid lg:grid-cols-2 gap-16">
-            <div className="space-y-8">
+          <div className="max-w-3xl mx-auto">
+            <div className="grid md:grid-cols-2 gap-8 items-center">
               <Card className="border-[#EDE6DB] bg-[#FAF8F3]">
                 <CardContent className="pt-6">
-                  <div className="space-y-6">
-                    <div className="flex items-start gap-4">
-                      <div className="w-12 h-12 bg-[#8B6F47] rounded-lg flex items-center justify-center flex-shrink-0">
-                        <Phone className="w-5 h-5 text-white" />
-                      </div>
-                      <div>
-                        <h4 className="font-semibold text-[#3D2E1F] mb-1">Telefon</h4>
-                        <a href={`tel:${teacherInfo.phone}`} className="text-[#6B5545] hover:text-[#8B6F47] transition-colors">
-                          {teacherInfo.phone}
-                        </a>
-                      </div>
+                  <div className="flex items-start gap-4">
+                    <div className="w-12 h-12 bg-[#8B6F47] rounded-lg flex items-center justify-center flex-shrink-0">
+                      <Mail className="w-5 h-5 text-white" />
                     </div>
-                    <div className="flex items-start gap-4">
-                      <div className="w-12 h-12 bg-[#8B6F47] rounded-lg flex items-center justify-center flex-shrink-0">
-                        <Mail className="w-5 h-5 text-white" />
-                      </div>
-                      <div>
-                        <h4 className="font-semibold text-[#3D2E1F] mb-1">E-posta</h4>
-                        <a href={`mailto:${teacherInfo.email}`} className="text-[#6B5545] hover:text-[#8B6F47] transition-colors break-all">
-                          {teacherInfo.email}
-                        </a>
-                      </div>
+                    <div>
+                      <h4 className="font-semibold text-[#3D2E1F] mb-2">E-posta</h4>
+                      <a href={`mailto:${teacherInfo.email}`} className="text-[#6B5545] hover:text-[#8B6F47] transition-colors break-all">
+                        {teacherInfo.email}
+                      </a>
+                      <p className="text-sm text-[#9B8A7A] mt-3">
+                        Özel ders, eğitim danışmanlığı veya diğer sorularınız için bana e-posta gönderebilirsiniz.
+                      </p>
                     </div>
                   </div>
                 </CardContent>
               </Card>
-              <div className="relative rounded-2xl overflow-hidden h-64">
+              <div className="relative rounded-2xl overflow-hidden h-64 md:h-auto">
                 <img
-                  src="https://customer-assets.emergentagent.com/job_teacher-burcu/artifacts/w1y13yed_burcuprofil.jpeg"
+                  src="https://customer-assets.emergentagent.com/job_teacher-burcu/artifacts/a0fql3yb_burcusinifta.jpeg"
                   alt="Burcu Kırbayır"
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover shadow-xl rounded-2xl"
                 />
               </div>
             </div>
-            <Card className="border-[#EDE6DB] bg-[#FAF8F3]">
-              <CardHeader>
-                <CardTitle className="text-2xl text-[#3D2E1F]">Mesaj Gönderin</CardTitle>
-                <CardDescription className="text-[#6B5545]">
-                  Size en kısa sürede geri dönüş yapacağım
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <form onSubmit={handleSubmit} className="space-y-4">
-                  <div>
-                    <label className="block text-sm font-medium text-[#3D2E1F] mb-2">Adınız</label>
-                    <Input
-                      name="name"
-                      value={formData.name}
-                      onChange={handleInputChange}
-                      placeholder="Adınız ve soyadınız"
-                      required
-                      className="border-[#EDE6DB] focus:border-[#8B6F47] focus:ring-[#8B6F47]"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-[#3D2E1F] mb-2">E-posta</label>
-                    <Input
-                      type="email"
-                      name="email"
-                      value={formData.email}
-                      onChange={handleInputChange}
-                      placeholder="ornek@email.com"
-                      required
-                      className="border-[#EDE6DB] focus:border-[#8B6F47] focus:ring-[#8B6F47]"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-[#3D2E1F] mb-2">Telefon</label>
-                    <Input
-                      type="tel"
-                      name="phone"
-                      value={formData.phone}
-                      onChange={handleInputChange}
-                      placeholder="0532 xxx xx xx"
-                      className="border-[#EDE6DB] focus:border-[#8B6F47] focus:ring-[#8B6F47]"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-[#3D2E1F] mb-2">Mesajınız</label>
-                    <Textarea
-                      name="message"
-                      value={formData.message}
-                      onChange={handleInputChange}
-                      placeholder="Mesajınızı buraya yazın..."
-                      required
-                      rows={5}
-                      className="border-[#EDE6DB] focus:border-[#8B6F47] focus:ring-[#8B6F47] resize-none"
-                    />
-                  </div>
-                  <Button
-                    type="submit"
-                    className="w-full bg-[#8B6F47] hover:bg-[#6B5533] text-white rounded-lg py-6 text-base"
-                  >
-                    <Send className="mr-2 w-4 h-4" />
-                    Gönder
-                  </Button>
-                </form>
-              </CardContent>
-            </Card>
           </div>
         </div>
       </section>
@@ -496,7 +394,6 @@ const Home = () => {
             <div>
               <h5 className="font-semibold mb-4">İletişim</h5>
               <div className="space-y-2 text-sm">
-                <p className="text-[#C4996B]">{teacherInfo.phone}</p>
                 <p className="text-[#C4996B] break-all">{teacherInfo.email}</p>
               </div>
             </div>
