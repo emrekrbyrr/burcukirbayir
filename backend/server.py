@@ -94,6 +94,85 @@ async def get_status_checks():
     
     return status_checks
 
+# Blog Routes
+@api_router.get("/blog", response_model=List[BlogPost])
+async def get_blog_posts():
+    """Get all blog posts"""
+    blog_posts = await db.blog_posts.find({}, {"_id": 0}).sort("created_at", -1).to_list(1000)
+    
+    # Convert ISO string timestamps back to datetime objects
+    for post in blog_posts:
+        if isinstance(post.get('created_at'), str):
+            post['created_at'] = datetime.fromisoformat(post['created_at'])
+        if isinstance(post.get('updated_at'), str):
+            post['updated_at'] = datetime.fromisoformat(post['updated_at'])
+    
+    return blog_posts
+
+@api_router.get("/blog/{post_id}", response_model=BlogPost)
+async def get_blog_post(post_id: str):
+    """Get a single blog post by ID"""
+    post = await db.blog_posts.find_one({"id": post_id}, {"_id": 0})
+    if not post:
+        raise HTTPException(status_code=404, detail="Blog post not found")
+    
+    # Convert ISO string timestamps back to datetime objects
+    if isinstance(post.get('created_at'), str):
+        post['created_at'] = datetime.fromisoformat(post['created_at'])
+    if isinstance(post.get('updated_at'), str):
+        post['updated_at'] = datetime.fromisoformat(post['updated_at'])
+    
+    return BlogPost(**post)
+
+@api_router.post("/blog", response_model=BlogPost)
+async def create_blog_post(post: BlogPostCreate):
+    """Create a new blog post"""
+    blog_post = BlogPost(
+        **post.model_dump(),
+        date=datetime.now(timezone.utc).strftime("%d %B %Y")
+    )
+    
+    # Convert to dict and serialize datetime to ISO string for MongoDB
+    doc = blog_post.model_dump()
+    doc['created_at'] = doc['created_at'].isoformat()
+    doc['updated_at'] = doc['updated_at'].isoformat()
+    
+    await db.blog_posts.insert_one(doc)
+    return blog_post
+
+@api_router.put("/blog/{post_id}", response_model=BlogPost)
+async def update_blog_post(post_id: str, post: BlogPostUpdate):
+    """Update an existing blog post"""
+    existing_post = await db.blog_posts.find_one({"id": post_id}, {"_id": 0})
+    if not existing_post:
+        raise HTTPException(status_code=404, detail="Blog post not found")
+    
+    update_data = {k: v for k, v in post.model_dump().items() if v is not None}
+    update_data["updated_at"] = datetime.now(timezone.utc).isoformat()
+    
+    await db.blog_posts.update_one(
+        {"id": post_id},
+        {"$set": update_data}
+    )
+    
+    updated_post = await db.blog_posts.find_one({"id": post_id}, {"_id": 0})
+    
+    # Convert ISO string timestamps back to datetime objects
+    if isinstance(updated_post.get('created_at'), str):
+        updated_post['created_at'] = datetime.fromisoformat(updated_post['created_at'])
+    if isinstance(updated_post.get('updated_at'), str):
+        updated_post['updated_at'] = datetime.fromisoformat(updated_post['updated_at'])
+    
+    return BlogPost(**updated_post)
+
+@api_router.delete("/blog/{post_id}")
+async def delete_blog_post(post_id: str):
+    """Delete a blog post"""
+    result = await db.blog_posts.delete_one({"id": post_id})
+    if result.deleted_count == 0:
+        raise HTTPException(status_code=404, detail="Blog post not found")
+    return {"message": "Blog post deleted successfully"}
+
 # Include the router in the main app
 app.include_router(api_router)
 
