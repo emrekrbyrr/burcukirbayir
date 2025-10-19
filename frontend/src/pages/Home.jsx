@@ -28,6 +28,7 @@ const getApproachIcon = (iconName) => {
 };
 
 const Home = () => {
+  const navigate = useNavigate();
   const [blogPosts, setBlogPosts] = useState([]);
 
   useEffect(() => {
