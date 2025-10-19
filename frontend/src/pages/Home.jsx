@@ -106,8 +106,8 @@ const Home = () => {
             <div className="relative">
               <div className="relative rounded-2xl overflow-hidden shadow-2xl">
                 <img
-                  src="https://images.unsplash.com/photo-1577896851231-70ef18881754?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2NzR8MHwxfHNlYXJjaHw0fHxlbGVtZW50YXJ5JTIwY2xhc3Nyb29tfGVufDB8fHx8MTc2MDg4ODIzNnww&ixlib=rb-4.1.0&q=85"
-                  alt="Sınıf ortamı"
+                  src="https://images.pexels.com/photos/8613059/pexels-photo-8613059.jpeg"
+                  alt="İlkokul öğrencileri sınıf ortamı"
                   className="w-full h-auto object-cover"
                 />
               </div>
