@@ -140,6 +140,15 @@ const AdminBlog = () => {
     });
   };
 
+  const handleLogout = () => {
+    localStorage.removeItem('admin_authenticated');
+    toast({
+      title: 'Çıkış Yapıldı',
+      description: 'Başarıyla çıkış yaptınız.'
+    });
+    navigate('/admin/login');
+  };
+
   return (
     <div className="min-h-screen bg-[#FAF8F3]">
       {/* Header */}
