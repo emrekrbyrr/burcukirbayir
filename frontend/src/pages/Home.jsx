@@ -59,9 +59,9 @@ const Home = () => {
             </div>
             <div className="hidden md:flex space-x-8">
               <a href="#hakkimda" className="text-[#6B5545] hover:text-[#3D2E1F] transition-colors text-sm font-medium">Hakkımda</a>
-              <a href="#deneyim" className="text-[#6B5545] hover:text-[#3D2E1F] transition-colors text-sm font-medium">Deneyimlerim</a>
               <a href="#yaklasim" className="text-[#6B5545] hover:text-[#3D2E1F] transition-colors text-sm font-medium">Öğretim Yaklaşımım</a>
               <a href="#blog" className="text-[#6B5545] hover:text-[#3D2E1F] transition-colors text-sm font-medium">Blog</a>
+              <a href="#deneyim" className="text-[#6B5545] hover:text-[#3D2E1F] transition-colors text-sm font-medium">Deneyimlerim</a>
               <a href="#iletisim" className="text-[#6B5545] hover:text-[#3D2E1F] transition-colors text-sm font-medium">İletişim</a>
             </div>
           </div>
