@@ -227,14 +227,38 @@ const AdminBlog = () => {
                 </div>
                 <div>
                   <label className="block text-sm font-medium text-[#3D2E1F] mb-2">Görsel URL'si</label>
-                  <Input
-                    name="image"
-                    value={formData.image}
-                    onChange={handleInputChange}
-                    placeholder="https://example.com/image.jpg"
-                    required
-                    className="border-[#EDE6DB] focus:border-[#8B6F47] focus:ring-[#8B6F47]"
-                  />
+                  <div className="flex gap-2">
+                    <Input
+                      name="image"
+                      value={formData.image}
+                      onChange={handleInputChange}
+                      placeholder="https://example.com/image.jpg"
+                      required
+                      className="border-[#EDE6DB] focus:border-[#8B6F47] focus:ring-[#8B6F47]"
+                    />
+                    <Button
+                      type="button"
+                      variant="outline"
+                      onClick={() => setIsImagePickerOpen(true)}
+                      className="border-[#8B6F47] text-[#8B6F47] hover:bg-[#8B6F47]/5 whitespace-nowrap"
+                    >
+                      <ImageIcon className="w-4 h-4 mr-2" />
+                      Görsel Seç
+                    </Button>
+                  </div>
+                  {formData.image && (
+                    <div className="mt-3">
+                      <p className="text-sm text-[#6B5545] mb-2">Önizleme:</p>
+                      <img
+                        src={formData.image}
+                        alt="Önizleme"
+                        className="w-full h-48 object-cover rounded-lg"
+                        onError={(e) => {
+                          e.target.style.display = 'none';
+                        }}
+                      />
+                    </div>
+                  )}
                 </div>
                 <div className="flex gap-3">
                   <Button
