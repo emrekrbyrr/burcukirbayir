@@ -313,6 +313,42 @@ const Home = () => {
         </div>
       </section>
 
+      {/* Experience Section */}
+      <section id="deneyim" className="py-20 bg-[#F5F0E8]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h3 className="text-3xl lg:text-4xl font-bold text-[#3D2E1F] mb-4">Deneyimlerim</h3>
+            <p className="text-lg text-[#6B5545] max-w-2xl mx-auto">
+              Farklı eğitim kurumlarında edindiğim değerli deneyimler
+            </p>
+          </div>
+          <div className="space-y-8 max-w-4xl mx-auto">
+            {experiences.map((exp, index) => (
+              <Card key={exp.id} className="border-[#EDE6DB] hover:shadow-lg transition-shadow duration-300 bg-white">
+                <CardHeader>
+                  <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+                    <div>
+                      <CardTitle className="text-2xl text-[#3D2E1F]">{exp.school}</CardTitle>
+                      <CardDescription className="text-[#9B8A7A] flex items-center gap-2 mt-2">
+                        <MapPin className="w-4 h-4" />
+                        {exp.location}
+                      </CardDescription>
+                    </div>
+                    <div className="text-[#8B6F47] font-semibold bg-[#C4996B]/10 px-4 py-2 rounded-lg text-sm">
+                      {exp.year}
+                    </div>
+                  </div>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-[#3D2E1F] font-medium mb-2">{exp.position}</p>
+                  <p className="text-[#6B5545] leading-relaxed">{exp.description}</p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Contact Section */}
       <section id="iletisim" className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
