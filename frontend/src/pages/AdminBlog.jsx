@@ -344,6 +344,14 @@ const AdminBlog = () => {
           )}
         </div>
       </div>
+      
+      {/* Image Picker Modal */}
+      <ImagePicker
+        isOpen={isImagePickerOpen}
+        onClose={() => setIsImagePickerOpen(false)}
+        onSelectImage={(url) => setFormData(prev => ({ ...prev, image: url }))}
+        currentImage={formData.image}
+      />
     </div>
   );
 };
