@@ -166,13 +166,23 @@ const AdminBlog = () => {
               </Button>
               <h1 className="text-3xl font-bold text-[#3D2E1F]">Blog Yönetimi</h1>
             </div>
-            <Button
-              onClick={() => setIsFormOpen(true)}
-              className="bg-[#8B6F47] hover:bg-[#6B5533] text-white"
-            >
-              <Plus className="w-4 h-4 mr-2" />
-              Yeni Yazı
-            </Button>
+            <div className="flex items-center gap-3">
+              <Button
+                onClick={() => setIsFormOpen(true)}
+                className="bg-[#8B6F47] hover:bg-[#6B5533] text-white"
+              >
+                <Plus className="w-4 h-4 mr-2" />
+                Yeni Yazı
+              </Button>
+              <Button
+                variant="outline"
+                onClick={handleLogout}
+                className="border-red-500 text-red-500 hover:bg-red-50"
+              >
+                <LogOut className="w-4 h-4 mr-2" />
+                Çıkış
+              </Button>
+            </div>
           </div>
         </div>
       </div>
