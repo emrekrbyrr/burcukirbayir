@@ -16,6 +16,7 @@ const AdminBlog = () => {
   const navigate = useNavigate();
   const [blogPosts, setBlogPosts] = useState([]);
   const [isFormOpen, setIsFormOpen] = useState(false);
+  const [isImagePickerOpen, setIsImagePickerOpen] = useState(false);
   const [editingPost, setEditingPost] = useState(null);
   const [formData, setFormData] = useState({
     title: '',
