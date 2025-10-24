@@ -212,6 +212,11 @@ async def upload_image(file: UploadFile = File(...)):
 # Include the router in the main app
 app.include_router(api_router)
 
+# Mount static files for uploaded images
+uploads_dir = Path("/app/frontend/public/uploads")
+uploads_dir.mkdir(parents=True, exist_ok=True)
+app.mount("/uploads", StaticFiles(directory=str(uploads_dir)), name="uploads")
+
 app.add_middleware(
     CORSMiddleware,
     allow_credentials=True,
