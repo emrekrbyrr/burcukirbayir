@@ -226,6 +226,49 @@ const ImagePicker = ({ isOpen, onClose, onSelectImage, currentImage }) => {
           </div>
         )}
 
+        {/* Upload Tab */}
+        {selectedTab === 'upload' && (
+          <div className="space-y-4">
+            <div className="border-2 border-dashed border-[#EDE6DB] rounded-lg p-8 text-center hover:border-[#8B6F47] transition-colors">
+              <Upload className="w-12 h-12 text-[#8B6F47] mx-auto mb-4" />
+              <h4 className="text-lg font-medium text-[#3D2E1F] mb-2">
+                Bilgisayarınızdan Görsel Yükleyin
+              </h4>
+              <p className="text-sm text-[#6B5545] mb-4">
+                JPG, PNG, GIF veya WEBP formatında, maksimum 5MB
+              </p>
+              <input
+                type="file"
+                accept="image/*"
+                onChange={handleFileUpload}
+                disabled={uploading}
+                className="hidden"
+                id="file-upload"
+              />
+              <label htmlFor="file-upload">
+                <Button
+                  type="button"
+                  disabled={uploading}
+                  className="bg-[#8B6F47] hover:bg-[#6B5533] text-white cursor-pointer"
+                  onClick={() => document.getElementById('file-upload').click()}
+                >
+                  {uploading ? 'Yükleniyor...' : 'Dosya Seç'}
+                </Button>
+              </label>
+            </div>
+            {uploadedFile && (
+              <div>
+                <p className="text-sm font-medium text-[#3D2E1F] mb-2">Yüklenen Görsel:</p>
+                <img
+                  src={uploadedFile}
+                  alt="Yüklenen"
+                  className="w-full h-48 object-cover rounded-lg"
+                />
+              </div>
+            )}
+          </div>
+        )}
+
         {/* URL Tab */}
         {selectedTab === 'url' && (
           <div className="space-y-4">
