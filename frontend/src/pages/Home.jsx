@@ -131,13 +131,13 @@ const Home = () => {
               <h3 className="text-3xl lg:text-4xl font-bold text-[#3D2E1F]">Hakkımda</h3>
               <div className="space-y-4 text-[#6B5545] leading-relaxed">
                 <p>
-                  Merhaba! Ben Burcu Kırbayır. {teacherInfo.education} mezunuyum ve eğitim dünyasında tutkuyla çalışan bir sınıf öğretmeniyim.
+                  Merhaba! Ben Burcu Öğretmen. Marmara Üniversitesi - Sınıf Öğretmenliği bölümünden 2021 yılında mezun oldum. Eğitim dünyasında tutkuyla çalışan bir sınıf öğretmeniyim. Kitap okumak, yazmak, çizmek; doğada zaman geçirip kamp yapmak vazgeçilmezlerim arasında. Bu yaşantılarımda edindiğim deneyimleri çocuklarla paylaşabilmek ise benim için çok kıymetli.
                 </p>
                 <p>
-                  2021 yılından bu yana İstanbul ve Kocaeli'deki prestijli okullarda görev yaparak, yüzlerce öğrencinin hayatına dokundum. Şu anda Nesibe Aydın Okulları'nda PYP programı ile öğrencilerime rehberlik ediyorum.
+                  İstanbul ve Kocaeli'deki farklı okullarda görev yaparak, yolumun kesiştiği her çocuğun hayatına dokunmayı hedefledim. Şu anda Kocaeli Nesibe Aydın Okulları'nda İB-PYP uygulaması ile öğrencilerime rehberlik ediyorum.
                 </p>
                 <p>
-                  Her çocuğun eşsiz olduğuna ve kendi hızında öğrendiğine inanıyorum. Bu sebeple derslerimde drama, teknoloji ve oyunlaştırma yöntemlerini harmanlayarak, öğrencilerimin öğrenmenin tadını çıkarmalarını sağlıyorum.
+                  Her çocuğun eşsiz olduğuna ve kendi hızında öğrendiğine inanıyorum. Bu sebeple derslerimde disiplinlerüstü yaklaşımı ele alarak teknoloji ve oyunlaştırma yöntemlerini harmanlayıp öğrencilerimin öğrenmenin tadını çıkarmalarını sağlıyorum. Ben de her gün onlardan yeni şeyler öğrenerek kendi öğrenme yolculuğumu sürdürüyorum.
                 </p>
               </div>
               <div className="pt-4">
