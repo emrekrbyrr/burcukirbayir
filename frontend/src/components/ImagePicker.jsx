@@ -82,7 +82,9 @@ const predefinedImages = [
 
 const ImagePicker = ({ isOpen, onClose, onSelectImage, currentImage }) => {
   const [customUrl, setCustomUrl] = useState('');
-  const [selectedTab, setSelectedTab] = useState('gallery'); // 'gallery' or 'url'
+  const [selectedTab, setSelectedTab] = useState('gallery'); // 'gallery', 'url', or 'upload'
+  const [uploading, setUploading] = useState(false);
+  const [uploadedFile, setUploadedFile] = useState(null);
 
   const handleSelectImage = (url) => {
     onSelectImage(url);
