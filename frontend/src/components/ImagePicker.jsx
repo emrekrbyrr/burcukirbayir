@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
-import { X, Search } from 'lucide-react';
+import { X, Search, Upload } from 'lucide-react';
 import { Button } from '../components/ui/button';
 import { Card } from '../components/ui/card';
 import { Input } from '../components/ui/input';
+import { toast } from '../hooks/use-toast';
+import axios from 'axios';
 import {
   Dialog,
   DialogContent,
@@ -10,6 +12,9 @@ import {
   DialogHeader,
   DialogTitle,
 } from '../components/ui/dialog';
+
+const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
+const API = `${BACKEND_URL}/api`;
 
 // Hazır eğitim görselleri
 const predefinedImages = [
