@@ -180,6 +180,16 @@ const ImagePicker = ({ isOpen, onClose, onSelectImage, currentImage }) => {
             Görsel Galerisi
           </button>
           <button
+            onClick={() => setSelectedTab('upload')}
+            className={`px-4 py-2 font-medium transition-colors ${
+              selectedTab === 'upload'
+                ? 'text-[#8B6F47] border-b-2 border-[#8B6F47]'
+                : 'text-[#6B5545] hover:text-[#3D2E1F]'
+            }`}
+          >
+            Dosya Yükle
+          </button>
+          <button
             onClick={() => setSelectedTab('url')}
             className={`px-4 py-2 font-medium transition-colors ${
               selectedTab === 'url'
