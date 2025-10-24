@@ -197,8 +197,8 @@ async def upload_image(file: UploadFile = File(...)):
         with open(file_path, "wb") as buffer:
             shutil.copyfileobj(file.file, buffer)
         
-        # Return URL that frontend can use
-        file_url = f"/uploads/{unique_filename}"
+        # Return full URL that can be accessed from both backend and frontend
+        file_url = f"{os.environ.get('REACT_APP_BACKEND_URL', 'http://localhost:8001')}/uploads/{unique_filename}"
         
         return {
             "success": True,
