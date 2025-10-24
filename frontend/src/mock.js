@@ -16,7 +16,7 @@ export const experiences = [
     school: "Nesibe Aydın Okulları",
     location: "Kocaeli",
     position: "Sınıf Öğretmeni",
-    description: "Şu anda görev yaptığım Nesibe Aydın Okulları'nda, uluslararası standartlarda PYP (Primary Years Programme) müfredatını uygulayarak öğrencilerimin hem akademik hem de sosyal-duygusal gelişimlerine katkı sağlıyorum. Drama etkinlikleri ile çocukların kendilerini özgürce ifade etmelerini desteklerken, yapay zeka araçları ve Web 2.0 teknolojilerini derslerime entegre ederek 21. yüzyıl becerilerini kazandırıyorum. Öğrenci merkezli yaklaşımımla, her çocuğun bireysel öğrenme stiline uygun materyaller geliştiriyor ve sınıfımda demokratik bir öğrenme ortamı oluşturuyorum."
+    description: "Şu anda görev yaptığım Nesibe Aydın Okulları'nda, Sınıf öğretmenliğinin yanı sıra 1. sınıflar zümre başkanlığı görevini de yürütüyorum. Uluslararası standartlarda uygulanan PYP (Primary Years Programme) müfredatıyla öğrencilerimin hem akademik hem de sosyal-duygusal gelişimlerini destekliyorum. Çocukların kendi seçimlerini yapabildikleri ders etkinlikleriyle öğrenme sürecinde özne olmalarını teşvik ediyor, böylece özgüven ve sorumluluk duygularını güçlendiriyorum. Derslerimde yapay zekâ araçları ve Web 2.0 teknolojilerini kullanarak 21. yüzyıl becerilerini kazandırmaya odaklanıyorum. Öğrenen merkezli bir yaklaşımla her öğrencinin bireysel öğrenme stiline uygun materyaller geliştiriyor, sınıfımda demokratik ve katılımcı bir öğrenme ortamı oluşturuyorum. Akademik kazanımların yanı sıra öğrencilerimin Araştırma, Düşünme, İletişim, Öz Yönetim ve Sosyal alanlardaki öğrenme yaklaşımlarını da sistemli biçimde destekliyor ve geliştiriyorum."
   },
   {
     id: 2,
