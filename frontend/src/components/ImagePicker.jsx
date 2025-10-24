@@ -99,6 +99,64 @@ const ImagePicker = ({ isOpen, onClose, onSelectImage, currentImage }) => {
     }
   };
 
+  const handleFileUpload = async (event) => {
+    const file = event.target.files[0];
+    if (!file) return;
+
+    // Validate file type
+    if (!file.type.startsWith('image/')) {
+      toast({
+        title: 'Hata',
+        description: 'Sadece resim dosyaları yüklenebilir.',
+        variant: 'destructive'
+      });
+      return;
+    }
+
+    // Validate file size (max 5MB)
+    if (file.size > 5 * 1024 * 1024) {
+      toast({
+        title: 'Hata',
+        description: 'Dosya boyutu 5MB\'dan küçük olmalıdır.',
+        variant: 'destructive'
+      });
+      return;
+    }
+
+    setUploading(true);
+
+    try {
+      const formData = new FormData();
+      formData.append('file', file);
+
+      const response = await axios.post(`${API}/upload`, formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+      });
+
+      if (response.data.success) {
+        const imageUrl = `${BACKEND_URL}${response.data.url}`;
+        setUploadedFile(imageUrl);
+        onSelectImage(imageUrl);
+        toast({
+          title: 'Başarılı!',
+          description: 'Görsel başarıyla yüklendi.'
+        });
+        onClose();
+      }
+    } catch (error) {
+      console.error('Error uploading file:', error);
+      toast({
+        title: 'Hata',
+        description: 'Görsel yüklenirken bir hata oluştu.',
+        variant: 'destructive'
+      });
+    } finally {
+      setUploading(false);
+    }
+  };
+
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto">
