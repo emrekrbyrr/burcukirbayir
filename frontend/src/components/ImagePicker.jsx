@@ -136,7 +136,7 @@ const ImagePicker = ({ isOpen, onClose, onSelectImage, currentImage }) => {
       });
 
       if (response.data.success) {
-        const imageUrl = `${BACKEND_URL}${response.data.url}`;
+        const imageUrl = response.data.url; // Backend already returns full URL
         setUploadedFile(imageUrl);
         onSelectImage(imageUrl);
         toast({
