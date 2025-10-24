@@ -174,6 +174,40 @@ async def delete_blog_post(post_id: str):
         raise HTTPException(status_code=404, detail="Blog post not found")
     return {"message": "Blog post deleted successfully"}
 
+@api_router.post("/upload")
+async def upload_image(file: UploadFile = File(...)):
+    """Upload an image file"""
+    try:
+        # Validate file type
+        allowed_types = ["image/jpeg", "image/jpg", "image/png", "image/gif", "image/webp"]
+        if file.content_type not in allowed_types:
+            raise HTTPException(status_code=400, detail="Invalid file type. Only images allowed.")
+        
+        # Generate unique filename
+        file_extension = file.filename.split(".")[-1]
+        unique_filename = f"{uuid.uuid4()}.{file_extension}"
+        
+        # Save to frontend public/uploads directory
+        upload_dir = Path("/app/frontend/public/uploads")
+        upload_dir.mkdir(parents=True, exist_ok=True)
+        file_path = upload_dir / unique_filename
+        
+        # Write file
+        with open(file_path, "wb") as buffer:
+            shutil.copyfileobj(file.file, buffer)
+        
+        # Return URL that frontend can use
+        file_url = f"/uploads/{unique_filename}"
+        
+        return {
+            "success": True,
+            "url": file_url,
+            "filename": unique_filename
+        }
+    except Exception as e:
+        logger.error(f"Error uploading file: {e}")
+        raise HTTPException(status_code=500, detail=f"Error uploading file: {str(e)}")
+
 # Include the router in the main app
 app.include_router(api_router)
 
