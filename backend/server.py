@@ -145,8 +145,12 @@ async def get_blog_posts():
 
 @api_router.get("/blog/{post_id}", response_model=BlogPost)
 async def get_blog_post(post_id: str):
-    """Get a single blog post by ID"""
-    post = await db.blog_posts.find_one({"id": post_id}, {"_id": 0})
+    """Get a single blog post by ID or slug"""
+    # Try to find by slug first, then by ID
+    post = await db.blog_posts.find_one({"slug": post_id}, {"_id": 0})
+    if not post:
+        post = await db.blog_posts.find_one({"id": post_id}, {"_id": 0})
+    
     if not post:
         raise HTTPException(status_code=404, detail="Blog post not found")
     
