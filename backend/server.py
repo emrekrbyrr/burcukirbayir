@@ -89,6 +89,7 @@ class BlogPost(BaseModel):
     model_config = ConfigDict(extra="ignore")  # Ignore MongoDB's _id field
     
     id: str = Field(default_factory=lambda: str(uuid.uuid4()))
+    slug: Optional[str] = None  # Optional for backward compatibility
     title: str
     excerpt: str
     content: str
