@@ -44,8 +44,10 @@ const Home = () => {
     }
   };
 
-  const handleBlogClick = (postId) => {
-    navigate(`/blog/${postId}`);
+  const handleBlogClick = (post) => {
+    // Use slug for SEO-friendly URLs, fallback to ID
+    const urlParam = post.slug || post.id;
+    navigate(`/blog/${urlParam}`);
   };
 
   return (
