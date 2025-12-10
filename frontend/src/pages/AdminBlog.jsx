@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Plus, Edit, Trash2, ArrowLeft, Image as ImageIcon, LogOut } from 'lucide-react';
+import { Plus, Edit, Trash2, ArrowLeft, Image as ImageIcon, LogOut, Download, Upload as UploadIcon } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '../components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/card';
