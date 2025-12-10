@@ -149,6 +149,65 @@ const AdminBlog = () => {
     navigate('/admin/login');
   };
 
+  const handleExportBlogs = async () => {
+    try {
+      const response = await axios.get(`${API}/blog-export`);
+      const data = response.data;
+      
+      // Create JSON file and download
+      const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = `blogs-export-${new Date().toISOString().split('T')[0]}.json`;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      
+      toast({
+        title: 'Başarılı!',
+        description: `${data.count} blog yazısı dışa aktarıldı.`
+      });
+    } catch (error) {
+      console.error('Error exporting blogs:', error);
+      toast({
+        title: 'Hata',
+        description: 'Bloglar dışa aktarılırken hata oluştu.',
+        variant: 'destructive'
+      });
+    }
+  };
+
+  const handleImportBlogs = (event) => {
+    const file = event.target.files[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = async (e) => {
+      try {
+        const data = JSON.parse(e.target.result);
+        
+        const response = await axios.post(`${API}/blog-import`, data);
+        
+        toast({
+          title: 'Başarılı!',
+          description: response.data.message
+        });
+        
+        fetchBlogPosts();
+      } catch (error) {
+        console.error('Error importing blogs:', error);
+        toast({
+          title: 'Hata',
+          description: 'Bloglar içe aktarılırken hata oluştu.',
+          variant: 'destructive'
+        });
+      }
+    };
+    
+    reader.readAsText(file);
+  };
+
   return (
     <div className="min-h-screen bg-[#FAF8F3]">
       {/* Header */}
