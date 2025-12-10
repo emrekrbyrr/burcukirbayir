@@ -58,6 +58,7 @@ class BlogPost(BaseModel):
     model_config = ConfigDict(extra="ignore")  # Ignore MongoDB's _id field
     
     id: str = Field(default_factory=lambda: str(uuid.uuid4()))
+    slug: str  # SEO-friendly URL slug
     title: str
     excerpt: str
     content: str
