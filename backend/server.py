@@ -224,6 +224,50 @@ async def delete_blog_post(post_id: str):
         raise HTTPException(status_code=404, detail="Blog post not found")
     return {"message": "Blog post deleted successfully"}
 
+@api_router.get("/blog-export")
+async def export_blogs():
+    """Export all blog posts as JSON"""
+    posts = await db.blog_posts.find({}, {"_id": 0}).to_list(1000)
+    return {"blogs": posts, "count": len(posts)}
+
+@api_router.post("/blog-import")
+async def import_blogs(data: dict):
+    """Import blog posts from JSON"""
+    try:
+        blogs = data.get("blogs", [])
+        if not blogs:
+            raise HTTPException(status_code=400, detail="No blogs provided")
+        
+        imported_count = 0
+        skipped_count = 0
+        
+        for blog in blogs:
+            # Check if blog already exists (by slug or ID)
+            existing = await db.blog_posts.find_one({
+                "$or": [
+                    {"slug": blog.get("slug")},
+                    {"id": blog.get("id")}
+                ]
+            })
+            
+            if existing:
+                skipped_count += 1
+                continue
+            
+            # Insert blog
+            await db.blog_posts.insert_one(blog)
+            imported_count += 1
+        
+        return {
+            "success": True,
+            "imported": imported_count,
+            "skipped": skipped_count,
+            "message": f"Successfully imported {imported_count} blogs, skipped {skipped_count} duplicates"
+        }
+    except Exception as e:
+        logger.error(f"Error importing blogs: {e}")
+        raise HTTPException(status_code=500, detail=f"Error importing blogs: {str(e)}")
+
 @api_router.post("/upload")
 async def upload_image(file: UploadFile = File(...)):
     """Upload an image file"""
