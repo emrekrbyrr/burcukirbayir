@@ -164,21 +164,8 @@ async def get_blog_post(post_id: str):
 @api_router.post("/blog", response_model=BlogPost)
 async def create_blog_post(post: BlogPostCreate):
     """Create a new blog post"""
-    # Generate slug from title
-    slug = generate_slug(post.title)
-    
-    # Check if slug already exists, if so add number suffix
-    existing = await db.blog_posts.find_one({"slug": slug})
-    if existing:
-        counter = 1
-        while existing:
-            slug = f"{generate_slug(post.title)}-{counter}"
-            existing = await db.blog_posts.find_one({"slug": slug})
-            counter += 1
-    
     blog_post = BlogPost(
         **post.model_dump(),
-        slug=slug,
         date=datetime.now(timezone.utc).strftime("%d %B %Y")
     )
     
