@@ -235,6 +235,31 @@ const AdminBlog = () => {
               </Button>
               <Button
                 variant="outline"
+                onClick={handleExportBlogs}
+                className="border-[#8B6F47] text-[#8B6F47] hover:bg-[#8B6F47]/5"
+              >
+                <Download className="w-4 h-4 mr-2" />
+                Dışa Aktar
+              </Button>
+              <input
+                type="file"
+                accept=".json"
+                onChange={handleImportBlogs}
+                className="hidden"
+                id="import-blogs"
+              />
+              <label htmlFor="import-blogs">
+                <Button
+                  variant="outline"
+                  className="border-[#8B6F47] text-[#8B6F47] hover:bg-[#8B6F47]/5 cursor-pointer"
+                  onClick={() => document.getElementById('import-blogs').click()}
+                >
+                  <UploadIcon className="w-4 h-4 mr-2" />
+                  İçe Aktar
+                </Button>
+              </label>
+              <Button
+                variant="outline"
                 onClick={handleLogout}
                 className="border-red-500 text-red-500 hover:bg-red-50"
               >
