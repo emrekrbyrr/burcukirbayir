@@ -24,8 +24,8 @@ const AdminLogin = () => {
     e.preventDefault();
     setLoading(true);
 
-    // Correct password
-    const correctPassword = 'Kirbayir.12';
+    // Get password from environment variable
+    const correctPassword = process.env.REACT_APP_ADMIN_PASSWORD || 'Kirbayir.12';
 
     if (password === correctPassword) {
       localStorage.setItem('admin_authenticated', 'true');
