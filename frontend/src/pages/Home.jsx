@@ -216,7 +216,7 @@ const Home = () => {
                 <CardContent>
                   <p className="text-[#6B5545] leading-relaxed">{post.excerpt}</p>
                   <button 
-                    onClick={() => handleBlogClick(post.id)}
+                    onClick={() => handleBlogClick(post)}
                     className="mt-4 text-[#8B6F47] font-medium hover:gap-3 flex items-center gap-2 transition-all"
                   >
                     Devamını Oku
