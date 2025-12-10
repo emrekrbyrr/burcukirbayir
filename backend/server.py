@@ -41,6 +41,35 @@ class StatusCheck(BaseModel):
 class StatusCheckCreate(BaseModel):
     client_name: str
 
+# Slug generator function for Turkish characters
+def generate_slug(text: str) -> str:
+    """Generate a SEO-friendly slug from Turkish text"""
+    # Turkish character mapping
+    turkish_map = {
+        'ı': 'i', 'İ': 'i', 'ş': 's', 'Ş': 's',
+        'ğ': 'g', 'Ğ': 'g', 'ü': 'u', 'Ü': 'u',
+        'ö': 'o', 'Ö': 'o', 'ç': 'c', 'Ç': 'c'
+    }
+    
+    # Replace Turkish characters
+    for turkish_char, latin_char in turkish_map.items():
+        text = text.replace(turkish_char, latin_char)
+    
+    # Convert to lowercase and normalize
+    text = text.lower()
+    text = unicodedata.normalize('NFKD', text)
+    text = text.encode('ascii', 'ignore').decode('ascii')
+    
+    # Replace spaces and special characters with hyphens
+    text = re.sub(r'[^\w\s-]', '', text)
+    text = re.sub(r'[-\s]+', '-', text)
+    text = text.strip('-')
+    
+    # Limit length
+    text = text[:100]
+    
+    return text
+
 # Blog Models
 class BlogPostCreate(BaseModel):
     title: str
