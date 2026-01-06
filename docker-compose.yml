@@ -1,0 +1,28 @@
+services:
+  backend:
+    build:
+      context: ./backend
+    environment:
+      # Set these in your EC2 .env (see .env.example)
+      MONGO_URL: ${MONGO_URL}
+      DB_NAME: ${DB_NAME}
+      CORS_ORIGINS: ${CORS_ORIGINS:-*}
+      # Where uploaded images are stored inside the container
+      UPLOAD_DIR: /data/uploads
+      # Optional: if you want backend to return absolute URLs for uploads
+      # PUBLIC_BASE_URL: ${PUBLIC_BASE_URL}
+    volumes:
+      - uploads:/data/uploads
+    restart: unless-stopped
+
+  web:
+    build:
+      context: ./frontend
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+    restart: unless-stopped
+
+volumes:
+  uploads:
