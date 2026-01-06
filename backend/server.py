@@ -18,6 +18,11 @@ import unicodedata
 ROOT_DIR = Path(__file__).parent
 load_dotenv(ROOT_DIR / '.env')
 
+# Uploads directory (configurable for non-container deployments)
+DEFAULT_UPLOAD_DIR = (ROOT_DIR.parent / "frontend" / "public" / "uploads").resolve()
+UPLOAD_DIR = Path(os.environ.get("UPLOAD_DIR", str(DEFAULT_UPLOAD_DIR)))
+UPLOAD_DIR.mkdir(parents=True, exist_ok=True)
+
 # MongoDB connection
 mongo_url = os.environ['MONGO_URL']
 client = AsyncIOMotorClient(mongo_url)
@@ -281,17 +286,17 @@ async def upload_image(file: UploadFile = File(...)):
         file_extension = file.filename.split(".")[-1]
         unique_filename = f"{uuid.uuid4()}.{file_extension}"
         
-        # Save to frontend public/uploads directory
-        upload_dir = Path("/app/frontend/public/uploads")
-        upload_dir.mkdir(parents=True, exist_ok=True)
-        file_path = upload_dir / unique_filename
+        # Save to uploads directory
+        file_path = UPLOAD_DIR / unique_filename
         
         # Write file
         with open(file_path, "wb") as buffer:
             shutil.copyfileobj(file.file, buffer)
         
-        # Return full URL that can be accessed from both backend and frontend
-        file_url = f"{os.environ.get('REACT_APP_BACKEND_URL', 'http://localhost:8001')}/uploads/{unique_filename}"
+        # Return URL that works behind a reverse proxy (relative by default)
+        relative_url = f"/uploads/{unique_filename}"
+        public_base_url = os.environ.get("PUBLIC_BASE_URL") or os.environ.get("REACT_APP_BACKEND_URL")
+        file_url = f"{public_base_url.rstrip('/')}{relative_url}" if public_base_url else relative_url
         
         return {
             "success": True,
@@ -306,9 +311,7 @@ async def upload_image(file: UploadFile = File(...)):
 app.include_router(api_router)
 
 # Mount static files for uploaded images
-uploads_dir = Path("/app/frontend/public/uploads")
-uploads_dir.mkdir(parents=True, exist_ok=True)
-app.mount("/uploads", StaticFiles(directory=str(uploads_dir)), name="uploads")
+app.mount("/uploads", StaticFiles(directory=str(UPLOAD_DIR)), name="uploads")
 
 app.add_middleware(
     CORSMiddleware,
