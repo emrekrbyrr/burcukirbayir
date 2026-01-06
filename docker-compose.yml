@@ -1,11 +1,17 @@
 services:
+  mongo:
+    image: mongo:7
+    volumes:
+      - mongo_data:/data/db
+    restart: unless-stopped
+
   backend:
     build:
       context: ./backend
     environment:
       # Set these in your EC2 .env (see .env.example)
-      MONGO_URL: ${MONGO_URL}
-      DB_NAME: ${DB_NAME}
+      MONGO_URL: ${MONGO_URL:-mongodb://mongo:27017}
+      DB_NAME: ${DB_NAME:-app}
       CORS_ORIGINS: ${CORS_ORIGINS:-*}
       # Where uploaded images are stored inside the container
       UPLOAD_DIR: /data/uploads
@@ -13,16 +19,19 @@ services:
       # PUBLIC_BASE_URL: ${PUBLIC_BASE_URL}
     volumes:
       - uploads:/data/uploads
+    depends_on:
+      - mongo
     restart: unless-stopped
 
   web:
     build:
       context: ./frontend
     ports:
-      - "80:80"
+      - "${WEB_PORT:-8088}:80"
     depends_on:
       - backend
     restart: unless-stopped
 
 volumes:
   uploads:
+  mongo_data:
