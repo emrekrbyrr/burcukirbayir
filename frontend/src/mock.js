@@ -45,7 +45,7 @@ export const teachingApproaches = [
   },
   {
     id: 2,
-    title: "PYP Programı",
+    title: "PYP Yaklaşımı",
     description: "Uluslararası Bakalorya Primary Years Programme ile öğrencilerin sorgulayıcı, bilgili ve düşünen bireyler olmalarını destekliyorum.",
     icon: "globe"
   },

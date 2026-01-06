@@ -136,7 +136,7 @@ const Home = () => {
                   Merhaba! Ben Burcu Öğretmen. Marmara Üniversitesi - Sınıf Öğretmenliği bölümünden 2021 yılında mezun oldum. Eğitim dünyasında tutkuyla çalışan bir sınıf öğretmeniyim. Kitap okumak, yazmak, çizmek; doğada zaman geçirip kamp yapmak vazgeçilmezlerim arasında. Bu yaşantılarımda edindiğim deneyimleri çocuklarla paylaşabilmek ise benim için çok kıymetli.
                 </p>
                 <p>
-                  İstanbul ve Kocaeli'deki farklı okullarda görev yaparak, yolumun kesiştiği her çocuğun hayatına dokunmayı hedefledim. Şu anda Kocaeli Nesibe Aydın Okulları'nda İB-PYP uygulaması ile öğrencilerime rehberlik ediyorum.
+                  İstanbul ve Kocaeli'deki farklı okullarda görev yaparak, yolumun kesiştiği her çocuğun hayatına dokunmayı hedefledim. Şu anda Kocaeli Nesibe Aydın Okulları'nda IB-PYP uygulaması ile öğrencilerime rehberlik ediyorum.
                 </p>
                 <p>
                   Her çocuğun eşsiz olduğuna ve kendi hızında öğrendiğine inanıyorum. Bu sebeple derslerimde disiplinlerüstü yaklaşımı ele alarak teknoloji ve oyunlaştırma yöntemlerini harmanlayıp öğrencilerimin öğrenmenin tadını çıkarmalarını sağlıyorum. Ben de her gün onlardan yeni şeyler öğrenerek kendi öğrenme yolculuğumu sürdürüyorum.
