@@ -14,6 +14,14 @@ import shutil
 import re
 import unicodedata
 
+from seed_data import build_seed_posts
+
+
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+)
+logger = logging.getLogger(__name__)
 
 ROOT_DIR = Path(__file__).parent
 load_dotenv(ROOT_DIR / '.env')
@@ -74,6 +82,30 @@ def generate_slug(text: str) -> str:
     text = text[:100]
     
     return text
+
+
+def _is_truthy_env(value: str) -> bool:
+    return value.strip().lower() in {"1", "true", "yes", "y", "on"}
+
+
+async def seed_blog_posts_if_empty():
+    """Seed starter blogs if collection is empty."""
+    if not _is_truthy_env(os.environ.get("SEED_BLOGS_ON_STARTUP", "true")):
+        logger.info("Blog seeding disabled via SEED_BLOGS_ON_STARTUP.")
+        return
+
+    existing_count = await db.blog_posts.count_documents({})
+    if existing_count > 0:
+        logger.info("Blog seeding skipped (%s existing posts).", existing_count)
+        return
+
+    blog_posts = build_seed_posts(generate_slug=generate_slug)
+    if not blog_posts:
+        logger.warning("No seed blog posts configured.")
+        return
+
+    await db.blog_posts.insert_many(blog_posts)
+    logger.info("Seeded %s blog posts.", len(blog_posts))
 
 # Blog Models
 class BlogPostCreate(BaseModel):
@@ -321,12 +353,12 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Configure logging
-logging.basicConfig(
-    level=logging.INFO,
-    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
-)
-logger = logging.getLogger(__name__)
+@app.on_event("startup")
+async def startup_seed_blogs():
+    try:
+        await seed_blog_posts_if_empty()
+    except Exception as exc:
+        logger.error(f"Failed to seed blog posts: {exc}")
 
 @app.on_event("shutdown")
 async def shutdown_db_client():
